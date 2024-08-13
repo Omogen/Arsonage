@@ -21,10 +21,11 @@ import net.minecraft.core.registries.Registries;
 
 public class ModBlocks{
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-	public static final DeferredBlock<Block> CHEESE_BLOCK = BLOCKS.register("cheese_block", () -> new CheeseBlock(BlockBehaviour.Properties.of()
-																								.destroyTime(3f)
-																								.explosionResistance(6f)
-																								.sound(SoundType.HONEY_BLOCK)
-																							));
+	public static final DeferredBlock<Block> CHEESE_BLOCK = BLOCKS.register("cheese_block", 
+										() -> new CheeseBlock(BlockBehaviour.Properties.of()
+											.destroyTime(3f)
+											.explosionResistance(6f)
+											.sound(SoundType.HONEY_BLOCK)
+										));
 																								
 	}

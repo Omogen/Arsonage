@@ -17,5 +17,5 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
     	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-		public static final DeferredItem<BlockItem> CHEESE_BLOCK = ITEMS.registerSimpleBlockItem("cheese_block", ModBlocks.CHEESE_BLOCK);
+		public static final DeferredItem<BlockItem> CHEESE_BLOCK = ITEMS.registerSimpleBlockItem(ModBlocks.CHEESE_BLOCK);
 }

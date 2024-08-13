@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all":"arsonage:block/cheese_block"
+	}
+}
+# THIS SHOULD NOT RENDER

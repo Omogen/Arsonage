@@ -1,0 +1,3 @@
+{
+"item.yourmodid.cheese_block": "Cheese Block"
+}
