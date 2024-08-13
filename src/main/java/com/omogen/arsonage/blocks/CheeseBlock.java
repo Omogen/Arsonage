@@ -1,6 +1,8 @@
 package com.omogen.arsonage.blocks;
+import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -8,6 +10,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -41,23 +44,25 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 	protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
 			BlockHitResult pHitResult) {
 	if(!pLevel.isClientSide()) {
-		pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
-		pPlayer.swing(InteractionHand.MAIN_HAND, true);
-		System.out.println("right clicked");
-		if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get()))
- {
-			System.out.println("right clicked cheese");
-			
-			int bites = pState.getValue(BITES);
-			if (bites < 5) {
-				System.out.println("bites WAS ="+bites);
-				bites++;
-				System.out.println("bites NOW ="+bites);
-				pLevel.setBlock(pPos, pState.setValue(BITES, bites), 3);
-					if (bites == 5) {
-						pLevel.removeBlock(pPos, false);
-					}
-			} 
+		FoodData foodData = pPlayer.getFoodData();
+		if (foodData.getFoodLevel() < 20) {
+			pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
+			pPlayer.swing(InteractionHand.MAIN_HAND, true);
+			foodData.eat(4, 0.1F);
+			//System.out.println("right clicked");
+			if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get())) {
+				System.out.println("right clicked cheese");
+				int bites = pState.getValue(BITES);
+				if (bites < 5) {
+						//System.out.println("bites WAS ="+bites);
+						bites++;
+						//System.out.println("bites NOW ="+bites);
+						pLevel.setBlock(pPos, pState.setValue(BITES, bites), 3);
+						if (bites == 5) {
+							pLevel.removeBlock(pPos, false);
+						}
+				}
+			}
 		}
 	}
 		return super.useWithoutItem(pState, pLevel, pPos, pPlayer, pHitResult);
@@ -67,7 +72,7 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 		 switch (state.getValue(BITES)) {
 	        case 0:
 	        default:
-	            return Block.box(0, 0, 0, 16, 16, 16); // Adjust these values to match your model dimensions
+	            return Block.box(0, 0, 0, 16, 16, 16);
 	        case 1:
 	            return Block.box(0, 0, 0, 13, 16, 16);
 	        case 2:
@@ -85,7 +90,7 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 	}
 }
 
-/* out-dated conditional check
+/* Out-dated conditional check
 int bites = state.getValue(BITES);
 if (bites == 1) {
 return Block.box(0, 0, 0, 13, 16, 16); 
