@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"bites=0": { "model": "arsonage:block/cheese_block" },
+		"bites=1": { "model": "arsonage:block/cheese_block" },
+		"bites=2": { "model": "arsonage:block/cheese_block" },
+		"bites=3": { "model": "arsonage:block/cheese_block" },
+		"bites=4": { "model": "arsonage:block/cheese_block" }
+	}
+}
