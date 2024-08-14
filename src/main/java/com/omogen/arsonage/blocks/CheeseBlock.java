@@ -44,14 +44,14 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 	protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
 			BlockHitResult pHitResult) {
 	if(!pLevel.isClientSide()) {
-		FoodData foodData = pPlayer.getFoodData();
-		if (foodData.getFoodLevel() < 20) {
-			pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
-			pPlayer.swing(InteractionHand.MAIN_HAND, true);
-			foodData.eat(4, 0.1F);
 			//System.out.println("right clicked");
 			if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get())) {
-				System.out.println("right clicked cheese");
+				FoodData foodData = pPlayer.getFoodData();
+				if (foodData.getFoodLevel() < 20) {
+					pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
+					pPlayer.swing(InteractionHand.MAIN_HAND, true);
+					foodData.eat(4, 0.1F);
+				//System.out.println("right clicked cheese");
 				int bites = pState.getValue(BITES);
 				if (bites < 5) {
 						//System.out.println("bites WAS ="+bites);
@@ -60,12 +60,16 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 						pLevel.setBlock(pPos, pState.setValue(BITES, bites), 3);
 						if (bites == 5) {
 							pLevel.removeBlock(pPos, false);
-						}
+					}
 				}
 			}
 		}
 	}
+	else {
+		return InteractionResult.PASS;
+	}
 		return super.useWithoutItem(pState, pLevel, pPos, pPlayer, pHitResult);
+		
 	}
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
