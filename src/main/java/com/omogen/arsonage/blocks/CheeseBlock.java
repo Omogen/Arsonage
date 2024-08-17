@@ -7,20 +7,29 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CandleBlock;
+import net.minecraft.world.level.block.CandleCakeBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -47,13 +56,13 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 			//System.out.println("right clicked");
 			if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get())) {
 				FoodData foodData = pPlayer.getFoodData();
-				if (foodData.getFoodLevel() < 20) {
+				if ((foodData.getFoodLevel() < 20) || pPlayer.isCreative())   {
 					pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
 					pPlayer.swing(InteractionHand.MAIN_HAND, true);
 					foodData.eat(4, 0.1F);
 				//System.out.println("right clicked cheese");
-				int bites = pState.getValue(BITES);
-				if (bites < 5) {
+					int bites = pState.getValue(BITES);
+					if (bites < 5) {
 						//System.out.println("bites WAS ="+bites);
 						bites++;
 						//System.out.println("bites NOW ="+bites);
@@ -62,11 +71,12 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 							pLevel.removeBlock(pPos, false);
 					}
 				}
+					return InteractionResult.SUCCESS;
 			}
 		}
 	}
 	else {
-		return InteractionResult.PASS;
+		return InteractionResult.SUCCESS;
 	}
 		return super.useWithoutItem(pState, pLevel, pPos, pPlayer, pHitResult);
 		
@@ -93,6 +103,7 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 		return this.getShape(state, world, pos, context);
 	}
 }
+	
 
 /* Out-dated conditional check
 int bites = state.getValue(BITES);

@@ -80,7 +80,7 @@ public class Arsonage
         NeoForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
-
+        modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -97,9 +97,15 @@ public class Arsonage
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
+    
 
     // Add the example block item to the building blocks tab
-
+    private void addCreative(BuildCreativeModeTabContentsEvent event)
+    {
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
+            event.accept(ModItems.CHEESE_BLOCK);
+    }
+    
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
