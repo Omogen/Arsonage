@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 
 import com.omogen.arsonage.Arsonage;
 import static com.omogen.arsonage.Arsonage.MODID;
@@ -23,9 +25,8 @@ public class ModBlocks{
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
 	public static final DeferredBlock<Block> CHEESE_BLOCK = BLOCKS.register("cheese_block", 
 										() -> new CheeseBlock(BlockBehaviour.Properties.of()
-											.destroyTime(3f)
+											.destroyTime(1f)
 											.explosionResistance(6f)
 											.sound(SoundType.HONEY_BLOCK)
 										));
-																								
 	}

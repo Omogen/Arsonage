@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+	{
+  "type": "neoforge:mod_loaded",
+  "modid": "croptopia"
+	}
+	],
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    {
+      "item": "arsonage:cheese_block"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "croptopia:cheese"
+  }
+}
