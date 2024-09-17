@@ -23,12 +23,10 @@ public class ScorchEnchantment {
         double x = pPlayer.getX();
         double y = pPlayer.getY();
         double z = pPlayer.getZ();
-        double radius = 1.0; // 2x2 block area means 1 block radius around the player\
-        ResourceKey<Enchantment> enchantment = Enchantments.SHARPNESS;
         ItemStack pItemStack = pPlayer.getMainHandItem();
-        /*
-        int enchantmentLevel = pItemStack.getEnchantmentLevel());
-        */
+        Holder<Enchantment> hasScorch = (Holder<Enchantment>) Enchantments.SHARPNESS; //FIXME
+        int enchantmentLevel = pItemStack.getEnchantmentLevel(hasScorch);
+        double radius = 1.0 * enchantmentLevel; // 2x2 block area means 1 block radius around the player\
         AABB boundingBox = new AABB(
                 x - radius, y - radius, z - radius,
                 x + radius, y + radius, z + radius
