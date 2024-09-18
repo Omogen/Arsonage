@@ -31,12 +31,12 @@ public class ScorchEnchantment {
         double x = attacker.getX();
         double y = attacker.getY();
         double z = attacker.getZ();
-        double radius = 1.0 * enchantmentLevel; // 2x2 block area means 1 block radius around the player
+        double radius = 3.0 * enchantmentLevel;
         AABB boundingBox = new AABB(
                 x - radius, y - radius, z - radius,
                 x + radius, y + radius, z + radius
         );
-        return level.getEntitiesOfClass(Entity.class, boundingBox);
-    }
- 
+        List<Entity> entities = level.getEntitiesOfClass(Entity.class, boundingBox, entity -> entity != attacker && entity instanceof LivingEntity);
+        return entities;
+	}
 }

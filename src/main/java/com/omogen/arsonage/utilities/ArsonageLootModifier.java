@@ -1,6 +1,11 @@
 package com.omogen.arsonage.utilities;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -16,7 +21,7 @@ public class ArsonageLootModifier extends LootModifier{
             Codec.STRING.fieldOf("field1").forGetter(e -> e.field1),
             Codec.INT.fieldOf("field2").forGetter(e -> e.field2),
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("field3").forGetter(e -> e.field3)
-    )).apply(inst, MyLootModifier::new)
+    )).apply(inst, ArsonageLootModifier::new)
 );
     // Our extra properties.
     private final String field1;
@@ -44,10 +49,4 @@ public class ArsonageLootModifier extends LootModifier{
         // Add your items to generatedLoot here.
         return generatedLoot;
     }
-
-	@Override
-	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
