@@ -103,23 +103,3 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 		return this.getShape(state, world, pos, context);
 	}
 }
-	
-
-/* Out-dated conditional check
-int bites = state.getValue(BITES);
-if (bites == 1) {
-return Block.box(0, 0, 0, 13, 16, 16); 
-}
-else if (bites ==2){
-	return Block.box(0, 0, 0, 10, 16, 16);
-}
-else if (bites == 3) {
-	return Block.box(0, 0, 0, 7, 16, 16);
-}
-else if (bites == 4) {
-	return Block.box(0, 0, 0, 4, 16, 16);
-}
-else {
-	return Block.box(0, 0, 0, 16, 16, 16);
-}
-*/

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.omogen.arsonage.blocks.CheeseBlock;
 import com.omogen.arsonage.blocks.ModBlocks;
+import com.omogen.arsonage.enchantments.ScorchEvent;
 import com.omogen.arsonage.items.ModItems;
 
 import net.minecraft.client.Minecraft;
@@ -73,7 +74,6 @@ public class Arsonage
         ModItems.ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
-
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -81,6 +81,7 @@ public class Arsonage
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        NeoForge.EVENT_BUS.addListener(ScorchEvent::onScorchAttack);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
