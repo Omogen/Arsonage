@@ -1,0 +1,14 @@
+{
+  "type": "arsonage:arsonage_loot_modifier",
+  "conditions":
+  [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/village/village_plains_house"
+    }
+  ],
+  "field1": "anything",
+  "field2": 41,
+  "field3": "minecraft:rooted_dirt",
+  "generatedLoot": "arsonage:chests/arsonage_village_plains_house"
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "entries": [
+    "arsonage:add_loot_pillager_outpost",
+    "arsonage:add_loot_village_desert_house",
+	"arsonage:add_loot_village_plains_house",
+	"arsonage:add_loot_village_savanna_house",
+	"arsonage:add_loot_village_snowy_house",
+	"arsonage:add_loot_village_taiga_house"
+  ]
+}

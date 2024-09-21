@@ -21,6 +21,7 @@ public class ScorchEvent extends ScorchEnchantment {
 
 	@SuppressWarnings("unused")
 	@SubscribeEvent
+	// Thanks to Vectorwing for his enchantment class which this is based off.
 	public static void onScorchAttack(LivingIncomingDamageEvent event) {
 		if (isApplyingDamage.get()) {
 			return;
@@ -29,7 +30,7 @@ public class ScorchEvent extends ScorchEnchantment {
 		if (attacker instanceof LivingEntity living) {
 			Level level = attacker.level();
 			if (level instanceof ServerLevel serverLevel) {
-				Holder<Enchantment> hasScorch = level.holderOrThrow(Enchantments.SHARPNESS);
+				Holder<Enchantment> hasScorch = level.holderOrThrow(SCORCH);
 				ItemStack weapon = attacker.getWeaponItem();
 				int enchantmentLevel = weapon.getEnchantmentLevel(hasScorch);
 				if (enchantmentLevel > 0) {
