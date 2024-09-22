@@ -44,6 +44,7 @@ public class CheeseBlock extends Block{
 public CheeseBlock(Properties p_49795_) {
 		super(p_49795_);
 	}
+
 public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 5);
 @Override
 protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
@@ -53,19 +54,15 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 	protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
 			BlockHitResult pHitResult) {
 	if(!pLevel.isClientSide()) {
-			//System.out.println("right clicked");
 			if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get())) {
 				FoodData foodData = pPlayer.getFoodData();
 				if ((foodData.getFoodLevel() < 20) || pPlayer.isCreative())   {
 					pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
 					pPlayer.swing(InteractionHand.MAIN_HAND, true);
 					foodData.eat(4, 0.1F);
-				//System.out.println("right clicked cheese");
 					int bites = pState.getValue(BITES);
 					if (bites < 5) {
-						//System.out.println("bites WAS ="+bites);
 						bites++;
-						//System.out.println("bites NOW ="+bites);
 						pLevel.setBlock(pPos, pState.setValue(BITES, bites), 3);
 						if (bites == 5) {
 							pLevel.removeBlock(pPos, false);

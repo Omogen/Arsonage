@@ -7,7 +7,6 @@ import com.omogen.arsonage.blocks.CheeseBlock;
 import com.omogen.arsonage.blocks.ModBlocks;
 import com.omogen.arsonage.enchantments.ScorchEvent;
 import com.omogen.arsonage.items.ModItems;
-import com.omogen.arsonage.utilities.ArsonageLootModifier;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -47,21 +46,9 @@ public class Arsonage
     public static final String MODID = "arsonage";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
 
-    // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
-
-    // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
-
-    // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
-
-
-    // Creates a new food item with the id "examplemod:example_id", nutrition 1 and saturation 2
-	
-    // Creates a creative tab with the id "examplemod:example_tab" for the example item, that is placed after the combat tab
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public Arsonage(IEventBus modEventBus, ModContainer modContainer)
@@ -75,8 +62,6 @@ public class Arsonage
         ModItems.ITEMS.register(modEventBus);
         // CREATIVE MODE TAB REGISTRY
         CREATIVE_MODE_TABS.register(modEventBus);
-        // GLOBAL LOOT MODIFIER REGISTRY
-        ArsonageLootModifier.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.

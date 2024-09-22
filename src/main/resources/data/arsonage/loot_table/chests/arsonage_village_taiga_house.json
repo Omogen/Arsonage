@@ -9,18 +9,23 @@
       "entries": [
         {
           "type": "minecraft:item",
+		  "weight": 13,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 3.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
           "name": "arsonage:cheese_block"
-        }
+        },
+		{
+		  "type": "minecraft:empty",
+		  "weight": 7
+		}
       ]
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "type": "arsonage:arsonage_loot_modifier",
+  "type": "neoforge:add_table",
   "conditions":
   [
     {
@@ -7,8 +7,5 @@
       "loot_table_id": "minecraft:chests/pillager_outpost"
     }
   ],
-  "field1": "anything",
-  "field2": 41,
-  "field3": "minecraft:rooted_dirt",
-  "generatedLoot": "arsonage:chests/arsonage_pillager_outpost"
+  "table": "arsonage:chests/arsonage_pillager_outpost"
 }
