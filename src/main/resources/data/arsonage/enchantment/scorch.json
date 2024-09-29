@@ -7,6 +7,7 @@
     "base": 40,
     "per_level_above_first": 10
   },
+  "exclusive_set": "#arsonage:exclusive_set/handheld_fire_enchantments",
   "max_level": 3,
   "min_cost": {
     "base": 10,
@@ -15,6 +16,6 @@
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/weapon",
+  "supported_items": "#minecraft:enchantable/sharp_weapon",
   "weight": 5
 }
