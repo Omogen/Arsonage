@@ -9,17 +9,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import static com.omogen.arsonage.Arsonage.MODID;
 
 public class ScorchEvent extends ScorchEnchantment {
 	private static final ThreadLocal<Boolean> isApplyingDamage = ThreadLocal.withInitial(() -> false);
 
-	@SuppressWarnings("unused")
 	@SubscribeEvent
 	// Thanks to Vectorwing for his enchantment class which this is based off.
 	public static void onScorchAttack(LivingIncomingDamageEvent event) {
@@ -27,13 +23,15 @@ public class ScorchEvent extends ScorchEnchantment {
 			return;
 		}
 		Entity attacker = event.getSource().getEntity();
-		if (attacker instanceof LivingEntity living) {
+		Entity attackedEntity = event.getEntity();
+		if (attacker instanceof LivingEntity) {
 			Level level = attacker.level();
-			if (level instanceof ServerLevel serverLevel) {
+			if (level instanceof ServerLevel) {
 				Holder<Enchantment> hasScorch = level.holderOrThrow(SCORCH);
 				ItemStack weapon = attacker.getWeaponItem();
 				int enchantmentLevel = weapon.getEnchantmentLevel(hasScorch);
 				if (enchantmentLevel > 0) {
+					attackedEntity.igniteForSeconds(3 + (2 * enchantmentLevel));
 					List<Entity> entities = ScorchEnchantment.getEntitiesAroundAttacker(attacker, enchantmentLevel);
 					for (Entity entity : entities) {
 						entity.igniteForSeconds(3 + (2 * enchantmentLevel));

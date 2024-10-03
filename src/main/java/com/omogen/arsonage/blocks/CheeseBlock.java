@@ -41,22 +41,21 @@ import static com.omogen.arsonage.blocks.ModBlocks.CHEESE_BLOCK;
 
 public class CheeseBlock extends Block{
 
-public CheeseBlock(Properties p_49795_) {
+	public CheeseBlock(Properties p_49795_) {
 		super(p_49795_);
 	}
 
-public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 5);
-@Override
-protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-   pBuilder.add(BITES);
-}
-@Override
-	protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer,
-			BlockHitResult pHitResult) {
-	if(!pLevel.isClientSide()) {
+	public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 5);
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+		pBuilder.add(BITES);
+		}
+	@Override
+	protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
+		if(!pLevel.isClientSide()) {
 			if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get())) {
 				FoodData foodData = pPlayer.getFoodData();
-				if ((foodData.getFoodLevel() < 20) || pPlayer.isCreative())   {
+				if ((foodData.getFoodLevel() < 20) || pPlayer.isCreative()) {
 					pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
 					pPlayer.swing(InteractionHand.MAIN_HAND, true);
 					foodData.eat(4, 0.1F);
@@ -66,18 +65,18 @@ protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockSt
 						pLevel.setBlock(pPos, pState.setValue(BITES, bites), 3);
 						if (bites == 5) {
 							pLevel.removeBlock(pPos, false);
+						}
 					}
-				}
 					return InteractionResult.SUCCESS;
+				}
 			}
 		}
-	}
-	else {
-		return InteractionResult.SUCCESS;
+		else {
+			return InteractionResult.SUCCESS;
 	}
 		return super.useWithoutItem(pState, pLevel, pPos, pPlayer, pHitResult);
-		
 	}
+
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		 switch (state.getValue(BITES)) {

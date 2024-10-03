@@ -6,8 +6,8 @@ import com.mojang.logging.LogUtils;
 import com.omogen.arsonage.blocks.CheeseBlock;
 import com.omogen.arsonage.blocks.ModBlocks;
 import com.omogen.arsonage.enchantments.ScorchEvent;
+import com.omogen.arsonage.items.BlazeAmulet;
 import com.omogen.arsonage.items.ModItems;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -68,9 +68,10 @@ public class Arsonage
         NeoForge.EVENT_BUS.register(this);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
-        NeoForge.EVENT_BUS.addListener(ScorchEvent::onScorchAttack);
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        NeoForge.EVENT_BUS.addListener(ScorchEvent::onScorchAttack);
+        NeoForge.EVENT_BUS.addListener(BlazeAmulet::blazeAmuletEvent);
+        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -82,8 +83,6 @@ public class Arsonage
             LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
 
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
     
 

@@ -1,4 +1,6 @@
 {
 "block.arsonage.cheese_block": "Cheese Block",
-"enchantment.arsonage.scorch": "Scorch"
+"enchantment.arsonage.scorch": "Scorch",
+"enchantment.arsonage.scorch.desc": "Mobs in an area around you will be ignited when you land an attack.",
+"item.arsonage.blaze_amulet": "Blaze Amulet"
 }

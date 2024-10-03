@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -31,21 +32,22 @@ public class Config
             .comment("What you want the introduction message to be for the magic number")
             .define("magicNumberIntroduction", "The magic number is... ");
 
-    // a list of strings that are treated as resource locations for items
-    private static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-            .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
+    // a list of strings that are treated as resource locations for entities
+    @SuppressWarnings("deprecation")
+	private static final ModConfigSpec.ConfigValue<List<? extends String>> SCORCH_EXCLUSION_LIST = BUILDER
+            .comment("Mobs unaffected by Scorch Enchantment's AOE in format 'modid:entity_name' ie. 'minecraft:zombie'. Server will have priority.")
+            .defineListAllowEmpty("ScorchExclusionList", List.of("minecraft:villager", "minecraft:wandering_trader", "minecraft:iron_golem", "minecraft:wolf", "minecraft:cat"), Config::validateEntityName);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean logDirtBlock;
     public static int magicNumber;
     public static String magicNumberIntroduction;
-    public static Set<Item> items;
+    public static Set<?> scorchExclusionEntities;
 
-    private static boolean validateItemName(final Object obj)
+    private static boolean validateEntityName(final Object obj)
     {
-        return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(itemName));
+        return obj instanceof String entityName && BuiltInRegistries.ENTITY_TYPE.containsKey(ResourceLocation.parse(entityName));
     }
 
     @SubscribeEvent
@@ -55,9 +57,9 @@ public class Config
         magicNumber = MAGIC_NUMBER.get();
         magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
 
-        // convert the list of strings into a set of items
-        items = ITEM_STRINGS.get().stream()
-                .map(itemName -> BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemName)))
+        // convert the list of strings into a set of entities
+        scorchExclusionEntities = SCORCH_EXCLUSION_LIST.get().stream()
+                .map(entityName -> BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(entityName)))
                 .collect(Collectors.toSet());
     }
 }
