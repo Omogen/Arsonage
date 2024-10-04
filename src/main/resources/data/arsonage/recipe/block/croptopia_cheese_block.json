@@ -1,8 +1,16 @@
 {
-  "neoforge:conditions": [
+	"neoforge:conditions": [
 	{
-	  "type": "neoforge:mod_loaded",
-	  "modid": "croptopia"
+		"type": "neoforge:and",
+		"values": [
+			{
+				"type": "arsonage:cheese_block_enabled"
+			},
+			{
+				"type": "neoforge:mod_loaded",
+				"modid": "croptopia"
+			}
+		]
 	}
 	],
 	"type": "minecraft:crafting_shaped",

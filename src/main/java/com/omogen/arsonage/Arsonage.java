@@ -3,24 +3,15 @@ package com.omogen.arsonage;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
-import com.omogen.arsonage.blocks.CheeseBlock;
 import com.omogen.arsonage.blocks.ModBlocks;
 import com.omogen.arsonage.enchantments.ScorchEvent;
 import com.omogen.arsonage.items.BlazeAmulet;
 import com.omogen.arsonage.items.ModItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.BuiltInRegistries;
+import com.omogen.arsonage.utilities.ConfigItemDisabledCondition;
+
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -33,9 +24,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -62,43 +50,37 @@ public class Arsonage
         ModItems.ITEMS.register(modEventBus);
         // CREATIVE MODE TAB REGISTRY
         CREATIVE_MODE_TABS.register(modEventBus);
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
+        // DATA LOADER CONDITIONS REGISTRY
+        ConfigItemDisabledCondition.CONDITION_CODECS.register(modEventBus);
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        // CONFIG REGISTRY
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NeoForge.EVENT_BUS.addListener(ScorchEvent::onScorchAttack);
         NeoForge.EVENT_BUS.addListener(BlazeAmulet::blazeAmuletEvent);
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
+    	
     }
     
 
-    // Add the example block item to the building blocks tab
+    // ADD CREATIVEMENU ITEMS
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
             event.accept(ModItems.CHEESE_BLOCK);
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+            event.accept(ModItems.BLAZE_AMULET.get());
     }
     
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -108,9 +90,7 @@ public class Arsonage
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            LOGGER.info("Arsonage is installed.");
         }
     }
 }

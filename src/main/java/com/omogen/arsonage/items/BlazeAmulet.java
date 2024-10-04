@@ -31,7 +31,7 @@ public class BlazeAmulet extends Item{
 				pPlayer.level().playSound(null, pPlayer.blockPosition(), SoundEvents.ALLAY_DEATH, SoundSource.PLAYERS, 1.0F, 1.5F);
 				ModTimer timer = new ModTimer();
 				timer.schedule(() -> {
-					pPlayer.clearFire();
+					pPlayer.clearFire(); // Cleared just as fire resistance wears off so the player isn't on fire afterwards.
 				}, 600);
 				timer.schedule(() -> {
 					pPlayer.level().playSound(null, pPlayer.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 1.0F, 2.0F);
