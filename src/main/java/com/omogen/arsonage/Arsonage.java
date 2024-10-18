@@ -4,11 +4,12 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.omogen.arsonage.blocks.ModBlocks;
+import com.omogen.arsonage.components.ModDataComponents;
 import com.omogen.arsonage.enchantments.ScorchEvent;
 import com.omogen.arsonage.items.BlazeAmulet;
 import com.omogen.arsonage.items.ModItems;
 import com.omogen.arsonage.utilities.ConfigItemDisabledCondition;
-
+import com.omogen.arsonage.utilities.ModTimer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -52,6 +53,8 @@ public class Arsonage
         CREATIVE_MODE_TABS.register(modEventBus);
         // DATA LOADER CONDITIONS REGISTRY
         ConfigItemDisabledCondition.CONDITION_CODECS.register(modEventBus);
+        // MOD DATA COMPONENTS REGISTRY
+        ModDataComponents.register(modEventBus);
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
         // Register the item to a creative tab
@@ -60,6 +63,7 @@ public class Arsonage
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         NeoForge.EVENT_BUS.addListener(ScorchEvent::onScorchAttack);
         NeoForge.EVENT_BUS.addListener(BlazeAmulet::blazeAmuletEvent);
+        NeoForge.EVENT_BUS.addListener(ModTimer::onServerTick);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
