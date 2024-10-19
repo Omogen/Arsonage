@@ -17,8 +17,6 @@ import net.minecraft.sounds.SoundSource;
 
 public class BlazeAmulet extends Item{
 
-	public static ItemStack BlazeAmuletItemStack = new ItemStack(ModItems.BLAZE_AMULET.get());
-	
 	public BlazeAmulet(Properties pProperties) {
 		super(pProperties);
 	}
@@ -28,6 +26,7 @@ public class BlazeAmulet extends Item{
 		LivingEntity damageReceiver = event.getEntity();
 		if (damageReceiver instanceof Player pPlayer && damageReceiver.level() instanceof ServerLevel) {
 			Inventory pInventory = pPlayer.getInventory();
+			ItemStack BlazeAmuletItemStack = new ItemStack(ModItems.BLAZE_AMULET.get());
 			if ((event.getSource().is(DamageTypes.ON_FIRE) || event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.LAVA) || event.getSource().is(DamageTypes.HOT_FLOOR))
 					&& pInventory.contains(BlazeAmuletItemStack)) {
 				if (!(pPlayer.getCooldowns().isOnCooldown(ModItems.BLAZE_AMULET.get())) && !(damageReceiver.hasEffect(MobEffects.FIRE_RESISTANCE))) {
