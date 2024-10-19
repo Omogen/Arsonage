@@ -44,7 +44,8 @@ public class Arsonage
     {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
+        // MOD DATA COMPONENTS REGISTRY - Registered before Items so Items can use the data components.
+        ModDataComponents.register(modEventBus);
         // MOD BLOCKS REGISTRY
         ModBlocks.BLOCKS.register(modEventBus);
         // MOD ITEMS REGISTRY
@@ -53,8 +54,6 @@ public class Arsonage
         CREATIVE_MODE_TABS.register(modEventBus);
         // DATA LOADER CONDITIONS REGISTRY
         ConfigItemDisabledCondition.CONDITION_CODECS.register(modEventBus);
-        // MOD DATA COMPONENTS REGISTRY
-        ModDataComponents.register(modEventBus);
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
         // Register the item to a creative tab

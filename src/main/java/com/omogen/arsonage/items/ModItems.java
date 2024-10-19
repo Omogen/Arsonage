@@ -5,7 +5,6 @@ import static com.omogen.arsonage.Arsonage.MODID;
 import java.util.function.Supplier;
 
 import com.omogen.arsonage.blocks.ModBlocks;
-
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import static net.minecraft.world.item.Rarity.RARE;
