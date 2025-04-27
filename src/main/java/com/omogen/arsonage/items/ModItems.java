@@ -1,28 +1,26 @@
 package com.omogen.arsonage.items;
 
 import static com.omogen.arsonage.Arsonage.MODID;
-
-import java.util.function.Supplier;
+import static net.minecraft.world.item.Rarity.RARE;
 
 import com.omogen.arsonage.blocks.ModBlocks;
 
-import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
-
-import static net.minecraft.world.item.Rarity.RARE;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
     	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 		public static final DeferredItem<BlockItem> CHEESE_BLOCK = ITEMS.registerSimpleBlockItem(ModBlocks.CHEESE_BLOCK);
-		public static final Supplier<Item> BLAZE_AMULET = ITEMS.registerItem(
+		public static final DeferredItem<Item> BLAZE_AMULET = ITEMS.registerItem(
 		        "blaze_amulet",
 		        BlazeAmulet::new,
 		        new Item.Properties()
+		        	.setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, "blaze_amulet")))
 		        	.fireResistant()
 		        	.rarity(RARE)
 		        	.stacksTo(1)

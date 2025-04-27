@@ -74,7 +74,7 @@ public class Arsonage
     // ADD CREATIVEMENU ITEMS
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS)
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS && Config.cheeseBlockEnabled)
             event.accept(ModItems.CHEESE_BLOCK);
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES)
             event.accept(ModItems.BLAZE_AMULET.get());

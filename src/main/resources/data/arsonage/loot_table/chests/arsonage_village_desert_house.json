@@ -1,4 +1,9 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "arsonage:cheese_block_enabled"
+    }
+  ],
   "pools": [
     {
       "rolls": {

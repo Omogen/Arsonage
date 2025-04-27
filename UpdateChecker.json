@@ -2,9 +2,19 @@
   "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/arsonage",
   "1.21": {
     "1.0.0": "Initial version.", 
-    "1.0.1": "Fix Blaze Amulet"
+    "1.0.1": "Fix Blaze Amulet",
+    "1.0.2": "Added support for bundles.",
+    "1.0.3": "More config options.",
+	"1.0.4": "Port to 1.21.3"
   },
   "promos": {
-    "1.21-latest": "1.0.1",
-    "1.21-recommended": "1.0.1",
+    "1.21-latest": "1.0.3",
+    "1.21-recommended": "1.0.3",
+	"1.21.1-latest": "1.0.3",
+	"1.21.1-recommended": "1.0.3",
+	"1.21.2-latest": "1.0.4",
+	"1.21.2-recommended": "1.0.4",
+	"1.21.3-latest": "1.0.4",
+	"1.21.3-recommended": "1.0.4"
+  }
 }

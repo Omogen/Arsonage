@@ -20,7 +20,7 @@ public class ConfigItemDisabledCondition implements ICondition
 
 	@Override
 	public boolean test(IContext context) {
-		return Config.cheeseBlockCraftable;
+		return Config.cheeseBlockEnabled;
 	}
 
 	@Override
