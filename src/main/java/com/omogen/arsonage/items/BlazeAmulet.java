@@ -30,8 +30,6 @@ public class BlazeAmulet extends Item{
 			Inventory pInventory = pPlayer.getInventory();
 			if ((event.getSource().is(DamageTypes.ON_FIRE) || event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.LAVA) || event.getSource().is(DamageTypes.HOT_FLOOR))
 					&& pInventory.contains(BlazeAmuletItemStack)) {
-				if (!(pPlayer.getCooldowns().isOnCooldown(ModItems.BLAZE_AMULET.get())) && !(damageReceiver.hasEffect(MobEffects.FIRE_RESISTANCE))) {
-					&& (pInventory.contains(BlazeAmuletItemStack) || (Config.canUseBlazeAmuletInBundle && isAmuletInBundle(pInventory)))) {
 				if (!(pPlayer.getCooldowns().isOnCooldown(ModItems.BLAZE_AMULET.get().getDefaultInstance())) && !(damageReceiver.hasEffect(MobEffects.FIRE_RESISTANCE))) {
 					damageReceiver.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));
 					pPlayer.getCooldowns().addCooldown(ModItems.BLAZE_AMULET.get().getDefaultInstance(), 2400);

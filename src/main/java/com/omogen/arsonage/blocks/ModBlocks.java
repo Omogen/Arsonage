@@ -13,14 +13,6 @@ import static com.omogen.arsonage.Arsonage.MODID;
 public class ModBlocks{
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
 	public static final DeferredBlock<Block> CHEESE_BLOCK = BLOCKS.register("cheese_block", 
-<<<<<<< Updated upstream
-										() -> new CheeseBlock(BlockBehaviour.Properties.of()
-											.destroyTime(1f)
-											.explosionResistance(6f)
-											.sound(SoundType.HONEY_BLOCK)
-										));
-	}
-=======
 		() -> new CheeseBlock(BlockBehaviour.Properties.of()
 			.destroyTime(1f)
 			.explosionResistance(6f)
@@ -28,4 +20,3 @@ public class ModBlocks{
 			.setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, "cheese_block")))
 		));
 }
->>>>>>> Stashed changes
