@@ -26,7 +26,7 @@ public class ScorchEvent extends ScorchEnchantment {
 		Entity attackedEntity = event.getEntity();
 		if (attacker instanceof LivingEntity) {
 			Level level = attacker.level();
-			if (level instanceof ServerLevel) {
+			if (level instanceof ServerLevel serverLevel) {
 				Holder<Enchantment> hasScorch = level.holderOrThrow(SCORCH);
 				ItemStack weapon = attacker.getWeaponItem();
 				int enchantmentLevel = weapon.getEnchantmentLevel(hasScorch);
@@ -37,7 +37,7 @@ public class ScorchEvent extends ScorchEnchantment {
 						entity.igniteForSeconds(3 + (2 * enchantmentLevel));
 						isApplyingDamage.set(true);
 						DamageSource attackerSource = event.getSource();
-						entity.hurt(attackerSource, 0);
+						entity.hurtServer(serverLevel, attackerSource, enchantmentLevel);
 						isApplyingDamage.set(false);
 					}
 				}

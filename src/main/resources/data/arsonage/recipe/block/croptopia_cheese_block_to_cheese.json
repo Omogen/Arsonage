@@ -16,9 +16,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "food",
   "ingredients": [
-    {
-      "item": "arsonage:cheese_block"
-    }
+     "arsonage:cheese_block"
   ],
   "result": {
     "count": 4,

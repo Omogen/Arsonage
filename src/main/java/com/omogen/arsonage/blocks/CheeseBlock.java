@@ -33,7 +33,7 @@ public class CheeseBlock extends Block{
 			if (pLevel.getBlockState(pPos).is(ModBlocks.CHEESE_BLOCK.get())) {
 				FoodData foodData = pPlayer.getFoodData();
 				if ((foodData.getFoodLevel() < 20) || pPlayer.isCreative()) {
-					pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 1.0F, 1.0F);
+					pLevel.playSound(null, pPos, SoundEvents.GENERIC_EAT.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
 					pPlayer.swing(InteractionHand.MAIN_HAND, true);
 					foodData.eat(4, 0.1F);
 					int bites = pState.getValue(BITES);

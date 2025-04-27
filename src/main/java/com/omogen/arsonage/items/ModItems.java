@@ -5,8 +5,13 @@ import static com.omogen.arsonage.Arsonage.MODID;
 import java.util.function.Supplier;
 
 import com.omogen.arsonage.blocks.ModBlocks;
+
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+
 import static net.minecraft.world.item.Rarity.RARE;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -20,7 +25,6 @@ public class ModItems {
 		        new Item.Properties()
 		        	.fireResistant()
 		        	.rarity(RARE)
-		        	.setNoRepair()
 		        	.stacksTo(1)
 		);
 }

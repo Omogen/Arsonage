@@ -21,9 +21,7 @@
 	   "   "
 	 ],
 	 "key": {
-	   "X": {
-	     "item": "croptopia:cheese"
-	   }
+	   "X": "croptopia:cheese"
 	 },
 	 "result": {
 	   "count": 1,

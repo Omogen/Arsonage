@@ -31,8 +31,10 @@ public class BlazeAmulet extends Item{
 			if ((event.getSource().is(DamageTypes.ON_FIRE) || event.getSource().is(DamageTypes.IN_FIRE) || event.getSource().is(DamageTypes.LAVA) || event.getSource().is(DamageTypes.HOT_FLOOR))
 					&& pInventory.contains(BlazeAmuletItemStack)) {
 				if (!(pPlayer.getCooldowns().isOnCooldown(ModItems.BLAZE_AMULET.get())) && !(damageReceiver.hasEffect(MobEffects.FIRE_RESISTANCE))) {
+					&& (pInventory.contains(BlazeAmuletItemStack) || (Config.canUseBlazeAmuletInBundle && isAmuletInBundle(pInventory)))) {
+				if (!(pPlayer.getCooldowns().isOnCooldown(ModItems.BLAZE_AMULET.get().getDefaultInstance())) && !(damageReceiver.hasEffect(MobEffects.FIRE_RESISTANCE))) {
 					damageReceiver.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 600));
-					pPlayer.getCooldowns().addCooldown(ModItems.BLAZE_AMULET.get(), 2400);
+					pPlayer.getCooldowns().addCooldown(ModItems.BLAZE_AMULET.get().getDefaultInstance(), 2400);
 					event.setAmount(0);
 					pPlayer.level().playSound(null, pPlayer.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 1.0F, 1.5F);
 					pPlayer.level().playSound(null, pPlayer.blockPosition(), SoundEvents.ALLAY_DEATH, SoundSource.PLAYERS, 1.0F, 1.5F);
