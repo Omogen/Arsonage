@@ -5,7 +5,8 @@
     "1.0.1": "Fix Blaze Amulet",
     "1.0.2": "Added support for bundles.",
     "1.0.3": "More config options.",
-	"1.0.4": "Port to 1.21.3"
+	"1.0.4": "Port to 1.21.3",
+	"1.0.5": "Port to 1.21.4"
   },
   "promos": {
     "1.21-latest": "1.0.3",
@@ -15,6 +16,8 @@
 	"1.21.2-latest": "1.0.4",
 	"1.21.2-recommended": "1.0.4",
 	"1.21.3-latest": "1.0.4",
-	"1.21.3-recommended": "1.0.4"
+	"1.21.3-recommended": "1.0.4",
+	"1.21.4-latest": "1.0.5",
+	"1.21.4-recommended": "1.0.5"
   }
 }
