@@ -58,7 +58,7 @@ public class BlazeAmulet extends Item{
 	}
 
 	public static boolean isAmuletInBundle(Inventory pInventory) {
-		Iterator<ItemStack> var1 = pInventory.items.iterator();
+		Iterator<ItemStack> var1 = pInventory.getNonEquipmentItems().iterator();
 
 			while(true) {
 				ItemStack itemStack;
