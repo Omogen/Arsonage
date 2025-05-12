@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "arsonage:cheese_block",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "bites": "0"
+              }
+            }
+          ],
+          "name": "arsonage:cheese_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "arsonage:blocks/cheese_block"
+}

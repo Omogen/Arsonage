@@ -16,8 +16,8 @@ public class ModDataComponents {
 	public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES =
 			DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, Arsonage.MODID);
 	
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ARTEFACT_POWER =
-            register("artefact_power", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> ARTIFACT_POWER =
+            register("artifact_power", builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
 
 	private static <T>DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
 		return DATA_COMPONENT_TYPES.register(name, () -> builderOperator.apply(DataComponentType.builder()).build());
