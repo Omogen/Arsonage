@@ -29,7 +29,7 @@ public class Config
     // a list of strings that are treated as resource locations for entities
     private static final ModConfigSpec.ConfigValue<List<? extends String>> SCORCH_EXCLUSION_LIST = BUILDER
             .comment("Mobs unaffected by Scorch Enchantment's AOE in format 'modid:entity_name' ie. 'minecraft:zombie'. Server will have priority.")
-            .defineListAllowEmpty("ScorchExclusionList", List.of("minecraft:villager", "minecraft:wandering_trader", "minecraft:iron_golem", "minecraft:wolf", "minecraft:cat", "minecraft:allay"), null, Config::validateEntityName);
+            .defineListAllowEmpty("ScorchExclusionList", List.of("minecraft:villager", "minecraft:wandering_trader", "minecraft:iron_golem", "minecraft:wolf", "minecraft:cat", "minecraft:allay", "minecraft:happy_ghast"), null, Config::validateEntityName);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
