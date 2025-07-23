@@ -12,6 +12,7 @@ import net.neoforged.neoforge.common.conditions.NotCondition;
 import java.util.concurrent.CompletableFuture;
 
 import com.omogen.arsonage.items.ModItems;
+import com.omogen.arsonage.utilities.ConfigItemDisabledCondition;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
@@ -58,7 +59,9 @@ public class ModRecipeProvider extends RecipeProvider {
 	.save(this.output
 			.withConditions(
 				new NotCondition(
-						new ModLoadedCondition("croptopia"))));
+						new ModLoadedCondition("croptopia")), 
+				new ConfigItemDisabledCondition()
+				));
 	/*
 	ShapelessRecipeBuilder.shapeless(this.registries.lookupOrThrow(Registries.ITEM), RecipeCategory.FOOD, croptopiaCheese, 4)
 	.requires(ModItems.CHEESE_BLOCK.get())

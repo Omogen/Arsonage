@@ -6,6 +6,9 @@
         "type": "neoforge:mod_loaded",
         "modid": "croptopia"
       }
+    },
+    {
+      "type": "arsonage:cheese_block_enabled"
     }
   ],
   "type": "minecraft:crafting_shapeless",

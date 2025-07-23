@@ -6,6 +6,9 @@
         "type": "neoforge:mod_loaded",
         "modid": "croptopia"
       }
+    },
+    {
+      "type": "arsonage:cheese_block_enabled"
     }
   ],
   "parent": "minecraft:recipes/root",

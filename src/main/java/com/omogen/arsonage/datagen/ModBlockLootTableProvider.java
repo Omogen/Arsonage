@@ -27,12 +27,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider{
 	protected void generate() {
 		this.add(ModBlocks.CHEESE_BLOCK.get(), block -> LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-						.setRolls(ConstantValue.exactly(1))
-							.add(LootItem.lootTableItem(ModBlocks.CHEESE_BLOCK.get())
-									.when(LootItemBlockStatePropertyCondition
-											.hasBlockStateProperties(ModBlocks.CHEESE_BLOCK.get())
-													.setProperties(StatePropertiesPredicate.Builder.properties()
-															.hasProperty(CheeseBlock.BITES, 0))))));
+				.setRolls(ConstantValue.exactly(1))
+				.add(LootItem.lootTableItem(ModBlocks.CHEESE_BLOCK.get())
+				.when(LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(ModBlocks.CHEESE_BLOCK.get())
+				.setProperties(StatePropertiesPredicate.Builder.properties()
+				.hasProperty(CheeseBlock.BITES, 0))))));
 	}
 	
 	@Override

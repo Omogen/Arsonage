@@ -14,7 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 
-@EventBusSubscriber(modid = "arsonage", bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = "arsonage")
 public class ModDataGeneration {
 	@SubscribeEvent
 	public static void gatherData(GatherDataEvent.Client event) {

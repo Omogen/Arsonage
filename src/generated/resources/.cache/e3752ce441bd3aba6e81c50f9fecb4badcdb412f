@@ -1,5 +1,5 @@
-// 1.21.5	2025-05-12T05:13:45.9413634	Arsonage Recipes
-1985a9e889087f64187144dae1c62ced1302162d data/arsonage/advancement/recipes/building_blocks/cheese_block.json
+// 1.21.8	2025-07-23T18:15:23.9540319	Arsonage Recipes
+4228b23c2fce1203c1212b1691e7575420e8f42d data/arsonage/advancement/recipes/building_blocks/cheese_block.json
 65da2b369df5374e2cabf5fe3288f3fad3a9fcba data/arsonage/advancement/recipes/misc/blaze_amulet.json
 c31180b913bdadf68790189b5c0aa3b31477fa5f data/arsonage/recipe/blaze_amulet.json
-9a2bcd5f889df77cd06cbad2e38e51c1a1a409f0 data/arsonage/recipe/cheese_block.json
+8beec9a6788c5887e2db55890de17402dbb00570 data/arsonage/recipe/cheese_block.json
